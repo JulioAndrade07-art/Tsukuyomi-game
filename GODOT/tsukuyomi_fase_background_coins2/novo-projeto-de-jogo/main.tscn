@@ -1,0 +1,224 @@
+[gd_scene load_steps=24 format=3 uid="uid://wuov3qqkqij8"]
+
+[ext_resource type="Script" uid="uid://bkyayx2pfoyq8" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://c75jrp57x4wfs" path="res://icon.svg" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b8lhjoabc78gv" path="res://GodotPrototype/Sprites/player.png" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://uffdvcrs2km1" path="res://coin.gd" id="4_7mycd"]
+[ext_resource type="Texture2D" uid="uid://bdr1u5mul2hqw" path="res://GodotPrototype/Sprites/ground.png" id="4_272bh"]
+[ext_resource type="Texture2D" uid="uid://duqf1f3ypi4hr" path="res://background layers/1.png" id="7_272bh"]
+[ext_resource type="Texture2D" uid="uid://c7upxbbv1tu4t" path="res://sprites/image.png" id="7_dg77c"]
+[ext_resource type="Texture2D" uid="uid://djo1sv164onix" path="res://background layers/2.png" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://d070u1f1k866" path="res://sprites/image - Copia.png" id="8_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://oecnnwq36s5s" path="res://background layers/3.png" id="9_efxa6"]
+[ext_resource type="Texture2D" uid="uid://dg0187tfqrui6" path="res://background layers/4.png" id="10_dg77c"]
+[ext_resource type="Texture2D" uid="uid://dhloqr26fdum1" path="res://background layers/5.png" id="11_ycdy4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(21.688198, 22.47511)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(3430.9036, 52.341553)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(1149.3203, 52.341553)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kek77"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+atlas = ExtResource("7_dg77c")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
+atlas = ExtResource("7_dg77c")
+region = Rect2(17, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("7_dg77c")
+region = Rect2(34, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
+atlas = ExtResource("7_dg77c")
+region = Rect2(48, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
+atlas = ExtResource("8_ycdy4")
+region = Rect2(16, 49, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
+atlas = ExtResource("8_ycdy4")
+region = Rect2(32, 49, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycdy4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg77c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efxa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycdy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w48qg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vivmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cqfq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(179, 402)
+scale = Vector2(5.1039476, 5.7278657)
+script = ExtResource("1_ig7tw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-0.3918543, 0.6110487)
+scale = Vector2(0.17143595, 0.17867692)
+texture = ExtResource("2_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-0.65589905, 0.7624512)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_bottom = 700
+
+[node name="Chão" type="StaticBody2D" parent="." groups=["Chão"]]
+position = Vector2(159, 209)
+scale = Vector2(2.0285387, 1.0082792)
+
+[node name="Sprite2D" type="Sprite2D" parent="Chão"]
+position = Vector2(1070.475, 526.144)
+scale = Vector2(17.935478, 1.704636)
+texture = ExtResource("4_272bh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chão"]
+position = Vector2(1633.2644, 525.6481)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="Plataforma 1" type="StaticBody2D" parent="." groups=["Chão"]]
+position = Vector2(643, -88.00001)
+scale = Vector2(0.17851564, 1.1130064)
+
+[node name="Sprite2D" type="Sprite2D" parent="Plataforma 1"]
+position = Vector2(512.56006, 523.3573)
+scale = Vector2(35.886208, -1.141802)
+texture = ExtResource("3_lquwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma 1"]
+position = Vector2(500.8755, 522.9999)
+scale = Vector2(1, 0.99999994)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="Plataforma 2" type="StaticBody2D" parent="." groups=["Chão"]]
+position = Vector2(1015.99994, 31)
+scale = Vector2(0.17851564, 1.1130064)
+
+[node name="Sprite2D" type="Sprite2D" parent="Plataforma 2"]
+position = Vector2(512.56006, 523.3573)
+scale = Vector2(35.886208, -1.141802)
+texture = ExtResource("3_lquwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma 2"]
+position = Vector2(501.1499, 522.9999)
+scale = Vector2(1, 0.9999998)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="ParedeDireita" type="StaticBody2D" parent="." groups=["Chão"]]
+position = Vector2(1670, 728.99994)
+rotation = 1.5697764
+scale = Vector2(0.57233566, 1.20419)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParedeDireita"]
+position = Vector2(71.73154, 769.8473)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeDireita"]
+position = Vector2(1212.1434, 201.5527)
+scale = Vector2(0.99999994, 1)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="ParedeEsquerda" type="StaticBody2D" parent="." groups=["Chão"]]
+position = Vector2(899.00006, 367.00006)
+rotation = 1.5702384
+scale = Vector2(0.680201, 0.9975398)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParedeEsquerda"]
+position = Vector2(23.35166, 873.5752)
+scale = Vector2(8.785262, 1.6114571)
+texture = ExtResource("4_272bh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeEsquerda"]
+position = Vector2(28.251343, 874.88824)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="Coin" type="Area2D" parent="."]
+position = Vector2(897, 359)
+scale = Vector2(3.9599998, 3.8400002)
+script = ExtResource("4_7mycd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
+shape = SubResource("CircleShape2D_kek77")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Coin"]
+scale = Vector2(0.94949496, 0.9479167)
+sprite_frames = SubResource("SpriteFrames_ycdy4")
+autoplay = "default"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/1"]
+position = Vector2(0, 22)
+scale = Vector2(1, 0.97962964)
+texture = ExtResource("7_272bh")
+centered = false
+
+[node name="2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/2"]
+texture = ExtResource("8_5vw27")
+centered = false
+
+[node name="3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.11, 0.11)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/3"]
+position = Vector2(612, 56)
+scale = Vector2(0.67291665, 0.6342592)
+texture = ExtResource("9_efxa6")
+centered = false
+
+[node name="4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/4"]
+texture = ExtResource("10_dg77c")
+centered = false
+
+[node name="5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/5"]
+texture = ExtResource("11_ycdy4")
+centered = false
