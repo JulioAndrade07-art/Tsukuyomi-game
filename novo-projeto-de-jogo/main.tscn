@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://wuov3qqkqij8"]
+
+[ext_resource type="Script" uid="uid://bkyayx2pfoyq8" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://c75jrp57x4wfs" path="res://icon.svg" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://cg4827kifwj7s" path="res://moving_platform.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://uffdvcrs2km1" path="res://coin.gd" id="4_7mycd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(21.688198, 22.47511)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(1123.019, 52.341553)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kek77"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(-6, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(179, 402)
+scale = Vector2(5.1039476, 5.7278657)
+script = ExtResource("1_ig7tw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-0.3918543, 0.6110487)
+scale = Vector2(0.17143595, 0.17867692)
+texture = ExtResource("2_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-0.65589905, 0.7624512)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Chão" type="StaticBody2D" parent="." groups=["Chão"]]
+position = Vector2(80, 100)
+
+[node name="Sprite2D" type="Sprite2D" parent="Chão"]
+position = Vector2(495.5, 522)
+scale = Vector2(8.9296875, 0.43749958)
+texture = ExtResource("2_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chão"]
+position = Vector2(495, 523)
+shape = SubResource("RectangleShape2D_272bh")
+debug_color = Color(0.98475224, 0, 0.34504607, 0.41960785)
+
+[node name="Plataforma 1" type="StaticBody2D" parent="." groups=["Chão"]]
+position = Vector2(810, -124)
+scale = Vector2(0.17851564, 1.1130064)
+
+[node name="Sprite2D" type="Sprite2D" parent="Plataforma 1"]
+position = Vector2(504.15753, 523.8065)
+scale = Vector2(3.359483, -180.08347)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma 1"]
+position = Vector2(495, 523)
+shape = SubResource("RectangleShape2D_272bh")
+debug_color = Color(0.97065264, 0, 0.45647526, 0.41960785)
+
+[node name="ParedeDireita" type="StaticBody2D" parent="." groups=["Chão"]]
+position = Vector2(1746, 35.000004)
+rotation = 1.5697764
+scale = Vector2(0.57233566, 1.20419)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParedeDireita"]
+position = Vector2(71.73154, 769.8473)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeDireita"]
+position = Vector2(504.54343, 517.7602)
+scale = Vector2(0.99999994, 1)
+shape = SubResource("RectangleShape2D_272bh")
+debug_color = Color(0.9674019, 0, 0.47750425, 0.41960785)
+
+[node name="ParedeEsquerda" type="StaticBody2D" parent="." groups=["Chão"]]
+position = Vector2(902.00006, 312)
+rotation = 1.5702384
+scale = Vector2(0.57124263, 1.0004681)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParedeEsquerda"]
+position = Vector2(20.15411, 872.5982)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeEsquerda"]
+position = Vector2(19.785553, 874.8883)
+shape = SubResource("RectangleShape2D_272bh")
+debug_color = Color(0.9263214, 4.1199924e-05, 0.6748021, 0.41960785)
+
+[node name="MovingPlatform" type="Node2D" parent="."]
+position = Vector2(475, 226)
+script = ExtResource("3_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="MovingPlatform"]
+modulate = Color(0.91227055, 4.7168137e-06, 6.738305e-07, 1)
+position = Vector2(0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPlatform"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="Coin" type="Area2D" parent="."]
+position = Vector2(897, 359)
+script = ExtResource("4_7mycd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coin"]
+modulate = Color(0.8, 0.8, 0.35999998, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
+shape = SubResource("CircleShape2D_kek77")
+debug_color = Color(0.66, 0.517, 0, 1)

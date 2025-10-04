@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw87yc4rduqok"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n4st5"]
+radius = 29.0
+height = 80.0
+
+[node name="Game" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(88, 113)
+shape = SubResource("CapsuleShape2D_n4st5")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
