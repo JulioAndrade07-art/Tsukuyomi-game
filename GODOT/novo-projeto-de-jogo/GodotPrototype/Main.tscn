@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("res://Main.gd")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("res://Player.gd")
+position = Vector2(100, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("res://Sprites/player.png")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = RectangleShape2D.new()
+shape.extents = Vector2(16, 24)
+
+[node name="Chao" type="StaticBody2D" parent="."]
+position = Vector2(200, 300)
+
+[node name="Sprite2D" type="Sprite2D" parent="Chao"]
+texture = ExtResource("res://Sprites/ground.png")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao"]
+shape = RectangleShape2D.new()
+shape.extents = Vector2(64, 16)
+
+[node name="MovingPlatform" type="Node2D" parent="."]
+script = ExtResource("res://MovingPlatform.gd")
+position = Vector2(300, 250)
+
+[node name="Sprite2D" type="Sprite2D" parent="MovingPlatform"]
+texture = ExtResource("res://Sprites/platform.png")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPlatform"]
+shape = RectangleShape2D.new()
+shape.extents = Vector2(48, 12)
+
+[node name="Coin" type="Area2D" parent="."]
+script = ExtResource("res://Coin.gd")
+position = Vector2(200, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="Coin"]
+texture = ExtResource("res://Sprites/coin.png")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
+shape = CircleShape2D.new()
+shape.radius = 12

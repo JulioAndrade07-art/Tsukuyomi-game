@@ -10,14 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Novo Projeto de Jogo"
+config/name="Tsukuyomi Fase"
 run/main_scene="uid://wuov3qqkqij8"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
-[dotnet]
+[display]
 
-project/assembly_name="Novo Projeto de Jogo"
+window/size/viewport_width=1280
+window/size/viewport_height=769
 
 [input]
 
