@@ -3,13 +3,20 @@
 #include <iostream>
 #include <cstdlib>
 
-Game::Game() : isRunning(false), enemySpawnTimer(0), biomeChangeTimer(0) {}
+Game::Game() : isRunning(false), enemySpawnTimer(0), biomeChangeTimer(0), window(nullptr) {}
 
-Game::~Game() {}
+Game::~Game() {
+    if (window) {
+        delete window;
+    }
+}
 
 void Game::init() {
     std::cout << "Inicializando Jogo estilo Alto's...\n";
     isRunning = true;
+    
+    window = new sf::RenderWindow(sf::VideoMode({800, 600}), "Islide - VS Runner");
+    window->setFramerateLimit(60);
 
     player = new Player();
     inputHandler = new InputHandler();
@@ -33,16 +40,22 @@ void Game::init() {
 }
 
 void Game::handleEvents() {
-    // Simulating random inputs to test State and Command
-    int r = rand() % 100;
-    Command* cmd = nullptr;
-    if (r < 5) cmd = inputHandler->handleInput(Key::SPACE); // Jump
-    else if (r < 8) cmd = inputHandler->handleInput(Key::SHIFT); // Dash
-    else if (r < 10) cmd = inputHandler->handleInput(Key::CTRL); // Slide
-    else if (r < 12) cmd = inputHandler->handleInput(Key::ALT); // Glide
+    while (const std::optional<sf::Event> event = window->pollEvent()) {
+        if (event->is<sf::Event::Closed>()) {
+            isRunning = false;
+        }
 
-    if (cmd) {
-        player->handleInput(cmd);
+        if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
+            Command* cmd = nullptr;
+            if (keyPressed->scancode == sf::Keyboard::Scancode::Space) cmd = inputHandler->handleInput(Key::SPACE);
+            else if (keyPressed->scancode == sf::Keyboard::Scancode::LShift) cmd = inputHandler->handleInput(Key::SHIFT);
+            else if (keyPressed->scancode == sf::Keyboard::Scancode::LCtrl) cmd = inputHandler->handleInput(Key::CTRL);
+            else if (keyPressed->scancode == sf::Keyboard::Scancode::LAlt) cmd = inputHandler->handleInput(Key::ALT);
+
+            if (cmd) {
+                player->handleInput(cmd);
+            }
+        }
     }
 }
 
@@ -98,16 +111,18 @@ void Game::update(float deltaTime) {
 }
 
 void Game::render() {
-    // Console Render Simulation
-    // std::system("cls"); // Uncomment to clear screen on Windows
-    std::cout << "\n--- Rendering Frame ---\n";
+    window->clear(sf::Color(40, 40, 60)); // Dark background
+    
+    // As entidades ainda não estão com o signature de render(sf::RenderWindow&) 
+    // mas chamamos o printf simulado
     biomeManager->getCurrentBiomeName();
     player->render();
     for (Enemy* e : activeEnemies) {
         e->render();
     }
     hud->render();
-    std::cout << "-----------------------\n";
+
+    window->display();
 }
 
 void Game::clean() {
@@ -119,4 +134,8 @@ void Game::clean() {
     delete biomeManager;
     for (Enemy* e : activeEnemies) delete e;
     for (EnemyFactory* ef : enemyFactories) delete ef;
+    
+    if (window && window->isOpen()) {
+        window->close();
+    }
 }

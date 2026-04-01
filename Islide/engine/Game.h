@@ -8,10 +8,14 @@
 #include "../biomes/BiomeContext.h"
 #include "../enemies/EnemyFactory.h"
 #include <vector>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 class Game {
 private:
     bool isRunning;
+    sf::RenderWindow* window;
+    
     Player* player;
     InputHandler* inputHandler;
     ProgressionSystem* progression;
@@ -35,6 +39,7 @@ public:
     void clean();
 
     bool running() const { return isRunning; }
+    sf::RenderWindow* getWindow() const { return window; }
 };
 
 #endif
