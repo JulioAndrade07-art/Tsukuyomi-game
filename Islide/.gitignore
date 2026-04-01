@@ -1,0 +1,12 @@
+/.vs/
+/build/
+/out/
+/cmake-4.3.1/
+/cmake-4.3.1.zip
+/SFML-3.0.2/
+*.zip
+*.exe
+*.o
+*.obj
+*.ilk
+*.pdb
