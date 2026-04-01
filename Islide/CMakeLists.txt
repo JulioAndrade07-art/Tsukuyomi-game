@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/SFML-3.0.2/lib/cmake/SFML")
 
 # Find SFML components
-find_package(SFML 3 COMPONENTS graphics window system REQUIRED)
+find_package(SFML 3 COMPONENTS Graphics Window System REQUIRED)
 
 # Directories
 include_directories(.)

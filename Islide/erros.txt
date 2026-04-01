@@ -1,0 +1,17 @@
+RELATÓRIO DE ERROS E PROBLEMAS ENCONTRADOS NO MODO (C++ / PORTÁTIL)
+
+1. PROBLEMA DE ACENTUAÇÃO E CARACTERES ESPECIAIS:
+O caminho /Desktop/Projeto Verão/ possui o caractere especial "ã". Os compiladores em C/C++ padrão no Windows (GNU Make via GCC) são de linha de comando baseados no sistema Unix/POSIX, então quando o Makefile tenta entrar na pasta `Projeto Verão`, a conversão do console enxerga `Projeto VerÒo`. Isso causa corrupção da compilação e o sistema aborta dizendo que o diretório não foi encontrado. 
+- COMO CONTORNEI: Atualizei o arquivo build.bat para usar o gerador "Ninja", um sistema moderno que lida perfeitamente com esses caracteres no Windows sem quebrar o CMake. Você não precisa renomear a pasta!
+
+2. O PROBLEMA DA BIBLIOTECA SFML ("Unsupported SFML component: graphics"):
+O CMake conseguiu achar os componentes do SFML que estão na pasta raiz, porém ele recusou a biblioteca. Por quê? Existem duas possibilidades fortíssimas do mundo C++:
+A) O nome do componente no CMake do SFML 3 passou a exigir letras maiúsculas (ex: Graphics em vez de graphics), o que eu já corrigi no CMakeLists.txt.
+B) Incompatibilidade do GCC / Compilador. A biblioteca do `SFML-3.0.2` que você descompactou do GitHub provavelmente foi pré-compilada para o Visual Studio (MSVC), ou para uma versão muito específica do MinGW, mas estamos tentando usar o GCC 15 embutido lá dentro da pasta do portable `w64devkit` (nosso compiliador portátil). Quando ocorre esse "desencontro" de assinaturas no C++, a biblioteca se recusa a linkar.
+
+SOLUÇÃO PARA O PRÓXIMO PASSO (Você escolhe):
+- Renomear a pasta do seu projeto para "Projeto Verao" ajuda o script básico a funcionar com o Make clássico.
+- Fazer o download da biblioteca SFML exata pro MinGW ou construir ela junto do projeto.
+- Alternativa matadora: Passar pra JavaScript Puro e ignorar a dor de cabeça do C++. C++ no gamedev de janela exige MSVC (Visual Studio de 20GB).
+
+Todas essas atualizações para proteger seu projeto e o isolamento GoF foram feitos no código agora mesmo salvos no Git!
