@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=3 uid="uid://dinhesqga64tj"]
+
+[ext_resource type="PackedScene" uid="uid://flcxr7tcvk5s" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bjaq8o4htyu2p" path="res://level_manager.gd" id="2_lv"]
+
+[sub_resource type="Environment" id="Environment_lv"]
+background_mode = 1
+background_color = Color(0.1, 0, 0.15, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.2, 0.05, 0.3, 1)
+glow_enabled = true
+glow_intensity = 1.5
+glow_strength = 1.1
+glow_bloom = 0.2
+fog_enabled = true
+fog_light_color = Color(0.25, 0.05, 0.4, 1)
+fog_density = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.25, 0.1, 0.35, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nature_floor"]
+albedo_color = Color(0.1, 0.3, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_platform"]
+albedo_color = Color(0.4, 0.15, 0.6, 1)
+emission_enabled = true
+emission = Color(0.3, 0.1, 0.5, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nature_platform"]
+albedo_color = Color(0.5, 0.3, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bg"]
+albedo_color = Color(0.1, 0.02, 0.15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tr"]
+size = Vector3(2, 20, 10)
+
+[node name="LevelMap" type="Node3D"]
+script = ExtResource("2_lv")
+
+[node name="Node3D" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.44214, 1.71954, 1.4044218)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lv")
+
+[node name="MainLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.5, 0, 0.894427, 0.447214, -0.5, -0.433013, 0.774597, 0, 15, 0)
+light_color = Color(0.7, 0.4, 1, 1)
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="ChaoPrincipal" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+use_collision = true
+size = Vector3(100, 2, 8)
+material = SubResource("StandardMaterial3D_floor")
+
+[node name="ChaoNatureza" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130, 0, 0)
+use_collision = true
+size = Vector3(100, 2, 8)
+material = SubResource("StandardMaterial3D_nature_floor")
+
+[node name="Estruturas" type="Node3D" parent="."]
+
+[node name="Plataforma1" type="CSGBox3D" parent="Estruturas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 0.9772706)
+use_collision = true
+size = Vector3(8, 1, 3.4057617)
+material = SubResource("StandardMaterial3D_platform")
+
+[node name="Plataforma2" type="CSGBox3D" parent="Estruturas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 6, 0)
+use_collision = true
+size = Vector3(6, 1, 4)
+material = SubResource("StandardMaterial3D_platform")
+
+[node name="Plataforma3" type="CSGBox3D" parent="Estruturas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 9, 0)
+use_collision = true
+size = Vector3(8, 1, 4)
+material = SubResource("StandardMaterial3D_platform")
+
+[node name="Plataforma4_Ponte" type="CSGBox3D" parent="Estruturas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 5, 0)
+use_collision = true
+size = Vector3(8, 1, 4)
+material = SubResource("StandardMaterial3D_platform")
+
+[node name="ParedeBloqueioDireito" type="CSGBox3D" parent="Estruturas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 4, -2.6018677)
+use_collision = true
+size = Vector3(4, 8, 2.7962646)
+material = SubResource("StandardMaterial3D_floor")
+
+[node name="EstruturasNatureza" type="Node3D" parent="."]
+
+[node name="Tronco1" type="CSGBox3D" parent="EstruturasNatureza"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 3, 0)
+size = Vector3(2, 6, 2)
+material = SubResource("StandardMaterial3D_nature_platform")
+
+[node name="Folhagem1" type="CSGBox3D" parent="EstruturasNatureza"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 6, 0)
+use_collision = true
+size = Vector3(6, 2, 6)
+material = SubResource("StandardMaterial3D_nature_floor")
+
+[node name="Tronco2" type="CSGBox3D" parent="EstruturasNatureza"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, 5, 0)
+size = Vector3(2, 10, 2)
+material = SubResource("StandardMaterial3D_nature_platform")
+
+[node name="Folhagem2" type="CSGBox3D" parent="EstruturasNatureza"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, 10, 0)
+use_collision = true
+size = Vector3(8, 3, 8)
+material = SubResource("StandardMaterial3D_nature_floor")
+
+[node name="CenarioFundo" type="Node3D" parent="."]
+
+[node name="Montanha1" type="CSGBox3D" parent="CenarioFundo"]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 5, 10, -10)
+size = Vector3(20, 30, 2)
+material = SubResource("StandardMaterial3D_bg")
+
+[node name="TransitionArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TransitionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12308502, 10.000008, -0.5185318)
+shape = SubResource("BoxShape3D_tr")
